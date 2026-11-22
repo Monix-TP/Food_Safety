@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FOOD SAFETY: THE LOST EVIDENCE</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#1fa5a0;--amber:#f2a93b;--org:#d9743a;--red:#d64545;--ink:#e8f1f5;--nv:#0b1830;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{height:100%;margin:0;background:#06101f;color:var(--ink);font-family:Cairo,Tahoma,sans-serif;overflow:hidden;user-select:none;-webkit-user-select:none}
+#c{position:fixed;inset:0;width:100%;height:100%;display:block}
+#hud{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;display:none;gap:8px;align-items:center;padding:8px 12px;font-weight:700;font-size:14px;pointer-events:none}
+#hud>*{background:rgba(8,20,40,.78);border:1px solid #1d4a5c;border-radius:10px;padding:5px 11px;pointer-events:auto}
+#hud .sp{flex:1;background:none;border:0}
+#hint{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(92px + env(safe-area-inset-bottom,0px));background:rgba(8,20,40,.85);border:1px solid var(--amber);color:#ffe2a8;padding:7px 16px;border-radius:20px;font-size:14px;display:none;white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis}
+#ui{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(4,10,22,.55);padding:12px;box-sizing:border-box}
+.pn{background:linear-gradient(160deg,#0f2742,#0a1a31);border:1px solid #1f5a6a;border-radius:16px;padding:20px 22px;width:min(560px,100%);max-height:88vh;overflow:auto;box-shadow:0 18px 50px rgba(0,0,0,.6);line-height:1.8}
+.pn.ttl{background:none;border:0;box-shadow:none;text-align:center;width:min(520px,100%)}
+h1{margin:0;font-weight:900;direction:ltr;line-height:1}
+h1 span{display:block;font-size:clamp(34px,8vw,64px);color:#e8f1f5;letter-spacing:2px;text-shadow:0 4px 0 #0b3b44}
+h1 em{display:block;font-style:normal;font-size:clamp(20px,5vw,38px);color:var(--amber);letter-spacing:6px;margin-top:6px;text-shadow:0 3px 0 #6a3a10}
+h2{margin:6px 0 8px;font-size:21px}h4{margin:12px 0 0;color:var(--amber);font-size:14px}p{margin:2px 0}
+.sm{font-size:13px;opacity:.8}.sci{background:#0b2a35;border-right:3px solid var(--teal);padding:6px 10px;border-radius:6px;font-size:14px}
+.b,.opt{font:inherit;font-weight:700;color:var(--ink);background:#14405a;border:1px solid #2a7a8a;border-radius:12px;padding:10px 16px;cursor:pointer;display:block;width:100%;margin:8px 0;text-align:center}
+.b small{display:block;font-weight:400;font-size:12px;opacity:.75;direction:ltr}
+.b:hover,.opt:hover{background:#1a5877}.b:focus-visible,.opt:focus-visible,input:focus-visible{outline:3px solid var(--amber)}
+.b.am{background:var(--amber);color:#2a1604;border-color:#ffd58a}.b.am:hover{background:#ffc15c}.b:disabled{opacity:.4;cursor:not-allowed}
+.opt{text-align:right;font-weight:400}.opt.on{background:#6a4a12;border-color:var(--amber)}
+.row{display:flex;gap:8px}.row .b{margin:8px 0}
+input{font:inherit;width:100%;box-sizing:border-box;padding:10px 12px;border-radius:10px;border:1px solid #2a7a8a;background:#08182c;color:var(--ink);margin:6px 0}
+textarea.wa{font:inherit;font-size:16px;width:100%;box-sizing:border-box;min-height:130px;padding:10px 12px;border-radius:10px;border:1px solid #2a7a8a;background:#08182c;color:var(--ink);margin:6px 0;resize:vertical;direction:rtl;text-align:right;user-select:text;-webkit-user-select:text}textarea.wa:focus-visible{outline:3px solid var(--amber)}
+.tm{display:grid;grid-template-columns:1fr 1fr;gap:8px}.tm .b{margin:0}.tm .b.on{background:var(--teal);color:#04201f}
+.chip{display:inline-block;color:#06202a;font-size:12px;font-weight:700;padding:1px 10px;border-radius:20px}
+.bar{height:8px;background:#0a2236;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--amber))}
+.card{border:1px solid;border-radius:10px;padding:8px 12px;margin:8px 0;background:#0a1f36}.card.empty{border-color:#244;opacity:.55;border-style:dashed;text-align:center}
+.pts{color:#7fe3c0;font-weight:900;margin-top:8px}.ok{color:#7fe3c0;font-weight:900}.no{color:#ff8d8d;font-weight:900}.mid{color:var(--amber);font-weight:900}
+#tc{position:fixed;left:0;right:0;bottom:0;display:none;justify-content:space-between;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));pointer-events:none}
+#tc .pad{display:flex;gap:12px;pointer-events:auto}
+#tc button{width:66px;height:66px;border-radius:50%;border:2px solid #3fc4bd;background:rgba(14,60,76,.7);color:#fff;font:700 20px Cairo,sans-serif;touch-action:none}
+#tc button:active{background:var(--teal)}
+@keyframes pop{from{transform:scale(.92);opacity:0}to{transform:none;opacity:1}}
+.pn{animation:pop .3s ease-out}
+#ts{position:fixed;top:calc(58px + env(safe-area-inset-top,0px));left:50%;transform:translate(-50%,-14px);width:min(430px,92vw);box-sizing:border-box;background:rgba(10,30,52,.95);border:1px solid var(--teal);border-right:5px solid var(--amber);border-radius:12px;padding:8px 14px;opacity:0;transition:.35s;pointer-events:none;font-size:14px;line-height:1.6}
+#ts.on{opacity:1;transform:translate(-50%,0)}
+.sit{font-size:16px;background:#0b2a35;border-right:3px solid var(--amber);padding:6px 12px;border-radius:8px;margin:8px 0}
+.ev{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.ev span{font-size:12px;border:1px solid;border-radius:20px;padding:0 10px;background:#0a1f36}
+@media(prefers-reduced-motion:reduce){.pn{animation:none}#ts{transition:none}}
+@media(max-width:600px){#hud{font-size:12px;gap:5px;padding:6px}}
+
+.b,.opt{min-height:52px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.opt{font-size:16px}
+#hb{min-height:44px}.pn{max-height:88dvh}
+#tc button{width:72px;height:72px}#tc #ta{width:100px;border-radius:36px;background:rgba(242,169,59,.9);color:#2a1604;border-color:#ffd58a}
+#hint{bottom:calc(106px + env(safe-area-inset-bottom,0px))}
+#ui.sheet{align-items:flex-end;background:rgba(4,10,22,.2)}.pn.fbk{padding:14px 16px;border-top:3px solid var(--teal);line-height:1.7}
+.gb{text-align:right;border-right:6px solid var(--teal)}.gb small{margin-top:2px}
+@media(max-width:600px){#hud{font-size:12px}}
+</style></head><body>
+<canvas id="c"></canvas>
+<div id="hud"><span id="hn"></span><span id="hs"></span><span id="hp"></span><span class="sp"></span><button class="b" id="hb" style="width:auto;margin:0;padding:5px 12px">دفتر الملاحظات</button></div>
+<div id="hint"></div>
+<div id="tc" dir="ltr"><div class="pad"><button data-k="ArrowLeft" aria-label="يسار">‹</button><button data-k="ArrowRight" aria-label="يمين">›</button></div><div class="pad"><button data-k="Space">قفز</button><button id="ta">فحص</button></div></div>
+<div id="ts"></div><div id="ui"></div>
+<script>
+const $=s=>document.querySelector(s),cv=$('#c'),x=cv.getContext('2d'),ui=$('#ui');
+const H=540,W=2600,GY=450,TOUCH=matchMedia('(pointer:coarse)').matches||'ontouchstart' in window;
+let sc=1,vw=960,vh=540,T=0,cam=380,M='menu',paused=true;
+function rs(){const d=Math.min(devicePixelRatio||1,2);cv.width=innerWidth*d;cv.height=innerHeight*d;sc=Math.min(cv.height/H,cv.width/700);vw=cv.width/sc;vh=cv.height/sc}
+addEventListener('resize',rs);rs();
+
+/* ---------- البيانات ---------- */
+const LV={
+A:{t:'المجموعة A',n:'جولة الليل',b:'منتصف الليل والمصنع هادئ. طلب منك مشرف الجودة جولة تفتيش سريعة على خط الإنتاج.',sum:'الخطر الفيزيائي (Physical) جسم غريب صلب أو مرئي في الغذاء، كالبلاستيك والزجاج والمعدن. عند الاشتباه: أوقف، اعزل، سجّل، ثم امنع التكرار.',q:[
+{p:'plastic',h:'فيزيائي (Physical)',s:'عُثر على قطعة بلاستيك داخل منتج غذائي.',q:'ما نوع الخطر؟',o:[{t:'خطر فيزيائي (Physical)',ok:1},{t:'خطر كيميائي (Chemical)'},{t:'خطر بيولوجي (Biological)'},{t:'لا خطر لأنها قطعة صغيرة'}],f:'البلاستيك جسم غريب صلب قد يسبب الاختناق أو الجروح، لذلك هو خطر فيزيائي.',l:'أمثلة: بلاستيك، زجاج، معدن، خشب.'},
+{p:'glass',h:'فيزيائي (Physical)',s:'زجاج مكسور على خط الإنتاج.',q:'ما نوع الخطر والتصرف الأول؟',o:[{t:'فيزيائي (Physical): أوقف الخط واعزل المنتج',ok:1},{t:'فيزيائي: نظّف الزجاج وأكمل التشغيل'},{t:'كيميائي (Chemical): اغسل المنتج'},{t:'لا خطر ما لم يُرَ في المنتج'}],f:'الزجاج جسم غريب حاد يسبب الجروح، لذا نوقف الخط ونعزل كل منتج قد يكون تعرّض له.',l:'الشظايا الصغيرة قد لا تُرى، فالعزل أهم من التنظيف السريع.'},
+{p:'bolt',h:'فيزيائي (Physical)',s:'سقطت قطعة معدنية من المعدات داخل الغذاء.',q:'ما نوع الخطر ووسيلة الكشف المناسبة؟',o:[{t:'فيزيائي (Physical) ويكشفه كاشف المعادن (metal detector)',ok:1},{t:'كيميائي (Chemical) ويكشفه الغسيل'},{t:'بيولوجي (Biological) ويكشفه التبريد'},{t:'فيزيائي ولا يمكن كشفه أبدًا'}],f:'المعدن جسم غريب وخطر فيزيائي، ويمنعه كاشف المعادن وصيانة المعدات الدورية.',l:'الوقاية من المصدر أفضل من الفحص بعد الحدوث.'}]},
+B:{t:'المجموعة B',n:'الوردية المتأخرة',b:'الوردية المتأخرة بدأت. مرّ على المنشأة وتأكد أن كل شيء سليم.',sum:'الخطر الكيميائي (Chemical) يشمل بقايا المبيدات والمنظفات والمواد غير المخصصة للغذاء. الوقاية: تخزين منفصل، منع الرش قرب الغذاء، وشطف جيد مع تحقق.',q:[
+{p:'pest',h:'كيميائي (Chemical)',s:'وُجدت بقايا مبيدات (pesticide residues) في غذاء.',q:'ما نوع الخطر؟',o:[{t:'خطر كيميائي (Chemical)',ok:1},{t:'خطر فيزيائي (Physical)'},{t:'خطر بيولوجي (Biological)'},{t:'لا خطر لأنها غير مرئية'}],f:'بقايا المبيدات قد تلوث الغذاء حتى وإن لم تُرَ بسهولة، وهي خطر كيميائي.',l:'الأخطار الكيميائية قد تكون غير مرئية.'},
+{p:'spray',h:'كيميائي (Chemical)',s:'رُشّ مبيد بالقرب من منتجات غذائية.',q:'ما المشكلة المحتملة؟',o:[{t:'قد ينتقل الرذاذ إلى الغذاء (مسار تلوث)',ok:1},{t:'لا مشكلة إن لم يُرش الغذاء مباشرة'},{t:'الخطر بيولوجي لأن الرذاذ رطب'},{t:'يزول المبيد من الغذاء تلقائيًا'}],f:'الرذاذ والهواء قد ينقلان المبيد إلى الغذاء (contamination pathway)، لذا لا يُرشّ قرب الغذاء المكشوف.',l:'الاحتمال وارد حتى دون ملامسة مباشرة.'},
+{p:'detg',h:'كيميائي (Chemical)',s:'نُظّفت معدات الغذاء بمنظف كيميائي دون شطفها جيدًا.',q:'ما الخطر المحتمل؟',o:[{t:'بقايا المنظف قد تنتقل إلى الغذاء (كيميائي)',ok:1},{t:'لا خطر لأن المنظف يقتل الجراثيم'},{t:'خطر فيزيائي لأن المنظف سائل'},{t:'الشطف غير ضروري بعد التنظيف'}],f:'بقايا المنظف قد تبقى على الأسطح وتنتقل إلى الغذاء، لذلك يلزم شطف جيد (rinse) وتحقق.',l:'CIP (Clean-in-Place): تنظيف ثم شطف ثم تحقق من زوال البقايا.'}]},
+C:{t:'المجموعة C',n:'دفعة الصباح',b:'الصباح قبل التوزيع: دفعة جديدة تنتظر موافقتك.',sum:'الخطر البيولوجي (Biological) سببه كائنات دقيقة كالبكتيريا. التحكم: طهي كافٍ، وتبريد سريع، ونظافة الأفراد، والتأكيد يحتاج تحليلًا.',q:[
+{p:'bact',h:'بيولوجي (Biological)',s:'تناول شخص غذاءً ملوثًا ببكتيريا ممرضة (pathogenic bacteria).',q:'ما نوع الخطر؟',o:[{t:'خطر بيولوجي (Biological)',ok:1},{t:'خطر فيزيائي (Physical)'},{t:'خطر كيميائي (Chemical)'},{t:'لا خطر لأن البكتيريا صغيرة'}],f:'البكتيريا الممرضة كائنات دقيقة، لذلك هي خطر بيولوجي وقد تسبب التسمم الغذائي.',l:'البكتيريا والفيروسات والطفيليات أخطار بيولوجية.'},
+{p:'left',h:'بيولوجي (Biological)',s:'طعام مطبوخ تُرك في حرارة الغرفة ثلاث ساعات قبل التبريد.',q:'ما الخطر الأقرب؟',o:[{t:'تكاثر البكتيريا في منطقة الخطر الحراري (danger zone)',ok:1},{t:'لا خطر لأنه مطبوخ'},{t:'خطر فيزيائي لأنه ساخن'},{t:'التأخر في التبريد لا يغيّر شيئًا'}],f:'البكتيريا تتكاثر بسرعة بين نحو 5 و60°م، لذا لا يُترك الطعام المطبوخ طويلًا خارج التبريد.',l:'التبريد السريع يبطئ النمو ولا يقتل البكتيريا.'},
+{p:'wings',h:'بيولوجي (Biological)',s:'أجنحة دجاج لم تصل حرارتها الداخلية إلى 74°م (165°ف).',q:'ما أفضل تقييم؟',o:[{t:'قد تبقى بكتيريا حية: أعد الطهي حتى 74°م',ok:1},{t:'آمنة لأن لونها صار بنيًا'},{t:'خطر فيزيائي بسبب العظم'},{t:'التبريد وحده يقتل البكتيريا'}],f:'الوصول إلى 74°م (165°ف) داخليًا يقتل البكتيريا الممرضة، ويُتحقق منه بمقياس حرارة (thermometer).',l:'اللون وحده ليس دليلًا موثوقًا على النضج.'}]},
+D:{t:'المجموعة D',n:'الخط رقم 3',b:'الخط رقم 3 توقف لدقائق. افحص ما حوله قبل إعادة التشغيل.',sum:'مسببات الحساسية (Food allergens) قد تسبب ردود فعل خطيرة. الوقاية: وسم واضح، فصل الخطوط، وترتيب التحضير مع تنظيف فعّال لمنع التلامس المتبادل (cross-contact).',q:[
+{p:'peanut',h:'مسبب حساسية (Allergen)',s:'شخص لديه حساسية فول سوداني أكل دون علمه طعامًا يحتوي فولًا سودانيًا.',q:'ما نوع الخطر؟',o:[{t:'مسبب حساسية (Food allergen)',ok:1},{t:'خطر فيزيائي (Physical)'},{t:'خطر بيولوجي (Biological) فقط'},{t:'لا خطر لأنه طعام عادي'}],f:'مسببات الحساسية قد تثير رد فعل خطيرًا حتى بكمية صغيرة، لذلك يجب التصريح عنها بوضوح.',l:'الوسم الواضح (labeling) يحمي المصابين بالحساسية.'},
+{p:'fruit',h:'مسبب حساسية (Allergen)',s:'ستحضّر المنشأة الفراولة والكرفس، والكرفس مسبب حساسية معروف.',q:'أيهما يُحضَّر أولًا؟',o:[{t:'الفراولة أولًا ثم الكرفس، وتنظيف الأدوات بعده',ok:1},{t:'الكرفس أولًا ثم الفراولة بالأدوات نفسها'},{t:'الكرفس أولًا ثم شطف الأدوات بالماء فقط'},{t:'الترتيب لا يهم'}],f:'يُحضَّر الغذاء الخالي من مسبب الحساسية أولًا (الفراولة) ثم المسبب (الكرفس) مع تنظيف فعّال لمنع التلامس المتبادل (cross-contact).',l:'الكرفس من مسببات الحساسية المعروفة في كثير من الدول.'},
+{p:'line',h:'مسبب حساسية (Allergen)',s:'منتج لا يحتوي فولًا سودانيًا في مكوناته المضافة صُنع على خط استُخدم سابقًا لمنتجات فول سوداني دون منع فعّال للتلامس المتبادل.',q:'ما التقييم الأنسب؟',o:[{t:'قد يحمل أثرًا من الفول السوداني (cross-contact)',ok:1},{t:'آمن تمامًا لأن مكوناته خالية منه'},{t:'الخطر فيزيائي فقط'},{t:'يزول الأثر بالتبريد'}],f:'قد ينتقل الفول السوداني من الخط إلى المنتج (cross-contact)، لذا لا تكفي قائمة المكونات وحدها.',l:'التلامس المتبادل خطر محتمل يُمنع بالتنظيف الفعّال والفصل.'}]},
+X:{t:'ملف سري',n:'THE UNINVITED VISITOR',b:'فجر الشحن: وصلك بلاغ من غرفة التبريد. كوب زبادي مفتوح وفيه ضيف غير مدعو. هذه هي القضية الأخيرة.',sum:'الذبابة جسم غريب (خطر فيزيائي)، وقد تحمل ميكروبات (خطر بيولوجي محتمل). التلوث البيولوجي لا يُؤكَّد بوجودها وحدها، بل بالتحليل الميكروبي.',q:[
+{p:'flyc',h:'فيزيائي (Physical)',s:'وُجدت ذبابة داخل كوب زبادي مفتوح.',q:'ما الخطر المؤكد في هذا المشهد؟',o:[{t:'خطر فيزيائي: الذبابة جسم غريب',ok:1},{t:'تلوث بيولوجي مؤكد بالسالمونيلا'},{t:'خطر كيميائي من الزبادي'},{t:'لا خطر لأن الذبابة صغيرة'}],f:'الذبابة جسم غريب داخل الغذاء، فهي خطر فيزيائي مؤكد.',l:'الجسم الغريب خطر فيزيائي حتى لو كان حشرة.'},
+{p:'micro',t:'multi',h:'بيولوجي (محتمل)',s:'الذبابة قد تنقل الميكروبات من الأسطح إلى الغذاء.',q:'ما الصحيح عن الخطر البيولوجي؟',o:[{t:'قد تحمل الذبابة ميكروبات، فالخطر البيولوجي محتمل',ok:1},{t:'التأكد يحتاج تحليلًا ميكروبيًا (microbial test)',ok:1},{t:'وجود الذبابة يثبت التلوث البيولوجي'},{t:'إزالتها تجعل الكوب آمنًا'}],f:'الذباب قد يحمل ميكروبات فالخطر البيولوجي محتمل، لكنه غير مؤكد دون تحليل.',l:'محتمل (Potential) يختلف عن مؤكد (Confirmed).'},
+{p:'hold',h:'فيزيائي + بيولوجي محتمل',s:'الكوب جزء من دفعة جاهزة للشحن.',q:'ما التصرف الأنسب؟',o:[{t:'عزل الكوب والدفعة المحتملة، والإبلاغ، وطلب تحليل',ok:1},{t:'إزالة الذبابة وشحن الكوب'},{t:'رمي الذبابة ومتابعة الشحن'},{t:'إعلان تلوث مؤكد دون تحليل'}],f:'نعزل ونبلّغ ونطلب التحليل، فنعالج الجسم الغريب ونتحقق من احتمال التلوث دون ادعاء تأكيده.',l:'الاشتباه ليس تأكيدًا: التحليل هو الحكم.'}]}};
+const GN={A:'المستوى 1 — المجموعة A',B:'المستوى 2 — المجموعة B',C:'المستوى 3 — المجموعة C',D:'المستوى 4 — المجموعة D',X:'الملف السري'};
+const GE={A:'LEVEL 1 · GROUP A',B:'LEVEL 2 · GROUP B',C:'LEVEL 3 · GROUP C',D:'LEVEL 4 · GROUP D'};
+const GC={A:'#f2a93b',B:'#2fa6b0',C:'#7fe3c0',D:'#c9a6f0',X:'#ff8d8d'};
+let QS=[];
+
+/* ---------- الحالة ---------- */
+const S={name:'',team:'',score:0,st:0,nb:0,ok:0,no:0};const F=new Set();
+let U=0;const R={};
+try{const d=JSON.parse(sessionStorage.getItem('fsle')||'{}');S.name=d.n||'';Object.assign(R,d.R||{});U=d.u||0}catch(e){}
+const sv=()=>{try{sessionStorage.setItem('fsle',JSON.stringify({n:S.name,R,u:U}))}catch(e){}};
+const rk=r=>r>=.83?'محقق خبير':r>=.55?'محقق واعد':'محقق متدرب',rand=a=>a[Math.random()*a.length|0];
+const tot=()=>{const v=Object.values(R),f=k=>v.reduce((a,b)=>a+b[k],0);return{s:f('s'),ok:f('ok'),no:f('no'),m:v.length*90}};
+const P={x:120,y:GY,vx:0,vy:0,d:1,g:true,ins:0,t:0,cur:null};
+const K={};
+
+/* ---------- واجهة ---------- */
+function show(h,c){ui.className=c=='fbk'?'sheet':'';ui.innerHTML='<div class="pn '+(c||'')+'">'+h+'</div>';ui.style.display='flex';paused=true}
+function hide(){ui.style.display='none';ui.innerHTML='';paused=false}
+const bt=(id,a,b,c)=>`<button class="b ${c||''}" id="${id}">${a}${b?'<small>'+b+'</small>':''}</button>`;
+function hudUpd(){$('#hn').textContent=S.name+' · '+(S.team=='X'?'سري':S.team);$('#hs').textContent='XP '+S.score;$('#hp').textContent='المواقف '+F.size+'/3'}
+function menu(){M='menu';S.team='';QS=[];$('#hud').style.display=$('#tc').style.display=$('#hint').style.display='none';P.x=640;P.d=1;P.vx=0;P.y=GY;
+ show(`<h1><span>FOOD SAFETY</span><em>THE LOST EVIDENCE</em></h1><p class="sm" style="margin:14px 0 10px">لعبة تحقيق في سلامة الغذاء</p>${bt('n1',S.name?'متابعة التحقيق':'تحقيق جديد',S.name?'Continue':'New Investigation','am')}${bt('n2','طريقة اللعب','How to Play')}${bt('n3','عن اللعبة','About the Game')}${S.name?bt('n4','جلسة جديدة (مسح النتائج)'):''}`,'ttl');
+ $('#n1').onclick=S.name?hub:setup;
+ $('#n2').onclick=()=>info('طريقة اللعب',`<p>اختر مجموعتك وانتظر إشارة المقدّم، ثم افحص ثلاثة مواقف بالترتيب من اليسار إلى اليمين.</p><p>الجوال: أزرار الاتجاه للحركة، «قفز»، ثم «فحص» عند الاقتراب من جسم متوهج.</p><p class="sm">الكمبيوتر: A وD أو الأسهم للحركة، Space للقفز، E للفحص، N لدفتر الملاحظات.</p>`);
+ $('#n3').onclick=()=>info('عن اللعبة',`<p>لعبة تعليمية لعرض عملي في سلامة الغذاء. تتعلم فيها التمييز بين الخطر الفيزيائي والكيميائي والبيولوجي ومسببات الحساسية، وبين التلوث المحتمل والمؤكد.</p><p class="sm">لكل مجموعة مستوى مستقل من ثلاثة مواقف، ولكل لاعب نقاطه الخاصة.</p>`);
+ if(S.name)$('#n4').onclick=()=>{S.name='';U=0;for(const k in R)delete R[k];sv();menu()}}
+function info(t,b){show(`<h2>${t}</h2>${b}${bt('bk','رجوع')}`);$('#bk').onclick=menu}
+function setup(){
+ show(`<h2>بيانات المحقق</h2><label class="sm" for="nm">الاسم المستعار (اختياري)</label><input id="nm" maxlength="14" placeholder="محقق" autocomplete="off">${bt('go','متابعة','','am')}`);
+ $('#go').onclick=()=>{S.name=$('#nm').value.trim()||'محقق';sv();hub()}}
+function hub(){M='menu';S.team='';QS=[];$('#hud').style.display=$('#tc').style.display=$('#hint').style.display='none';P.x=640;P.d=1;P.vx=0;P.y=GY;
+ const T=tot(),u=['A','B','C','D'].every(k=>R[k])||U;
+ show(`<h2>مرحبًا ${S.name}</h2><p class="sm">اختر مجموعتك وانتظر إشارة المقدّم · مجموع XP: <b>${T.s}</b></p>`+['A','B','C','D'].map(k=>`<button class="b gb" data-t="${k}" style="border-right-color:${GC[k]}">${GN[k]}${R[k]?` <span class="ok">✔ ${R[k].s}/90</span>`:''}<small>${GE[k]}</small></button>`).join('')+(u?`<button class="b am" id="bs">THE UNINVITED VISITOR${R.X?' ✔ '+R.X.s+'/90':''}<small>الملف السري</small></button>`:`<div class="card empty"><p>🔒 ملف سري: يُفتح بعد إكمال المستويات الأربعة</p><input id="pc" maxlength="8" placeholder="رمز المقدّم" style="width:60%;text-align:center" dir="ltr"></div>`)+bt('mn','القائمة الرئيسية'));
+ ui.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{S.team=b.dataset.t;brief()});
+ if($('#bs'))$('#bs').onclick=()=>{S.team='X';brief()};
+ if($('#pc'))$('#pc').oninput=e=>{if(e.target.value.trim().toUpperCase()=='GUEST'){U=1;sv();hub()}};
+ $('#mn').onclick=menu}
+function brief(){const L=LV[S.team];show(`<span class="chip" style="background:${GC[S.team]}">${GN[S.team]}</span><h2>${L.n}</h2><p>${L.b}</p><p class="sm">3 مواقف مشبوهة في انتظارك. افحصها بالترتيب من اليسار إلى اليمين.</p>${bt('st','ادخل الموقع','','am')}${bt('bk','رجوع')}`);$('#st').onclick=start;$('#bk').onclick=hub}
+function start(){F.clear();QS=LV[S.team].q.map((q,i)=>({...q,id:i+1,x:[520,1250,1950][i],my:350}));Object.assign(S,{score:0,st:0,nb:0,q:0,ok:0,no:0});Object.assign(P,{x:120,y:GY,vx:0,vy:0,d:1,g:true,ins:0,cur:null});M='play';cam=0;
+ $('#hud').style.display='flex';$('#hint').style.display='block';if(TOUCH)$('#tc').style.display='flex';hide();hudUpd()}
+let tsT;
+function toast(h){const t=$('#ts');t.innerHTML=h;t.className='on';clearTimeout(tsT);tsT=setTimeout(()=>t.className='',2600)}
+function clueP(o){if(F.has(o.id))toast('أنهيت هذا الموقف. تابع يمينًا.');else dec(o.id-1)}
+function nb(){S.nb=1;let h=`<h2>دفتر الملاحظات</h2><div class="bar"><i style="width:${F.size*33.3}%"></i></div><p class="sm">المواقف: ${F.size} من 3</p>`;
+ QS.forEach(q=>h+=F.has(q.id)?`<div class="card" style="border-color:#2fa6b0"><span class="chip" style="background:#7fe3c0">${q.h}</span><p>${q.s}</p><p class="sci">${q.l}</p></div>`:'<div class="card empty">موقف لم يُكتشف بعد</div>');
+ show(h+bt('cl','العودة إلى المصنع'));$('#cl').onclick=hide}
+function dec(i){const q=QS[i];
+ if(S.team=='X'&&q.p=='flyc'){
+  show(`<div class="row" style="align-items:center;justify-content:space-between"><span class="chip" style="background:#7fe3c0">التحدي ${i+1}</span><span class="sm">موقف ${i+1} من 3</span></div><p class="sit">${q.s}</p><h2>${q.q}</h2><textarea class="wa" id="wa" rows="5" placeholder="Write your answer here..." aria-label="اكتب إجابتك" autocomplete="off"></textarea>${bt('sa','Submit Answer','','am')}`,'q');
+  const wa=$('#wa'),sa=$('#sa');sa.disabled=true;wa.oninput=()=>{sa.disabled=!wa.value.trim()};sa.onclick=()=>{if(wa.value.trim())fb(i,'ok')};return}
+ const ty=q.t||'mc',n=q.o.length,os=q.o.map((o,k)=>({t:o.t,ok:o.ok,k})).sort(()=>Math.random()-.5);let sel=[];
+ show(`<div class="row" style="align-items:center;justify-content:space-between"><span class="chip" style="background:${['#7fe3c0','#f2a93b','#c9a6f0'][i]}">التحدي ${i+1}</span><span class="sm">موقف ${i+1} من 3</span></div><p class="sit">${q.s}</p><h2>${q.q}</h2><p class="sm">${ty=='multi'?'اختر إجابتين':ty=='order'?'اضغط الخطوات بالترتيب الصحيح':''}</p>`+os.map((o,j)=>`<button class="opt" data-j="${j}">${o.t}</button>`).join('')+(ty=='mc'?'':bt('cf','تأكيد','','am')),'q');
+ const bs=[...ui.querySelectorAll('.opt')],cf=$('#cf');
+ const up=()=>{bs.forEach((b,j)=>{const p=sel.indexOf(j);b.classList.toggle('on',p>=0);b.innerHTML=(ty=='order'&&p>=0?`<span class="chip" style="background:#f2a93b">${p+1}</span> `:'')+os[j].t});if(cf)cf.disabled=ty=='order'?sel.length<n:!sel.length};up();
+ bs.forEach((b,j)=>b.onclick=()=>{if(ty=='mc')return fb(i,os[j].ok?'ok':'no');const p=sel.indexOf(j);if(p>=0)sel.splice(p,1);else sel.push(j);up()});
+ if(cf)cf.onclick=()=>{let r;if(ty=='order'){const c=sel.filter((j,p)=>os[j].k==p).length;r=c==n?'ok':c>=2?'mid':'no'}else{const c=sel.filter(j=>os[j].ok).length,w=sel.length-c,t=os.filter(o=>o.ok).length;r=c==t&&!w?'ok':c?'mid':'no'}fb(i,r)}}
+function fb(i,r){const q=QS[i],pts={ok:30,mid:15,no:5}[r],last=F.size>=2;S.score+=pts;r=='ok'?S.ok++:S.no++;F.add(i+1);hudUpd();S.fl=1;
+ if(last){R[S.team]={s:S.score,ok:S.ok,no:S.no};sv()}
+ const hd=rand({ok:['أحسنت أيها المحقق!','نظرة ثاقبة!','ملاحظة ممتازة!'],mid:['قريب من الصواب!'],no:['ليس تمامًا!','محاولة جيدة!']}[r]);
+ show(`<div class="row" style="justify-content:space-between;align-items:center"><h2 style="margin:0"><span class="${r}">${hd}</span></h2><span class="pts" style="margin:0">+${pts} XP</span></div><p>${q.f}</p>`+bt('nx',last?'النتيجة':'تابع','','am'),'fbk');
+ $('#nx').onclick=()=>{if(!last){hide();toast('تابع يمينًا نحو الموقف التالي')}else fin()}}
+function fin(){const t=S.team,L=LV[t],d4=['A','B','C','D'].every(k=>R[k]),T=tot();
+ show(`<span class="chip" style="background:#7fe3c0">${t=='X'?'أُغلق الملف السري':'أنهيت المستوى'}</span><h2>${S.name} · ${GN[t]}</h2><div class="row"><div class="card ok" style="flex:1;text-align:center">✔ ${S.ok} صحيحة</div><div class="card no" style="flex:1;text-align:center">✘ ${S.no} غير صحيحة</div></div><p>النقاط (XP): <b>${S.score}</b> من 90 · التقدير: <b>${rk(S.score/90)}</b></p><h4>الخلاصة</h4><p class="sci">${L.sum}</p>`
+ +(t=='X'?`<h4>نتيجة التحقيق النهائية</h4><p>إجمالي XP: <b>${T.s}</b> من ${T.m} · ✔ ${T.ok} · ✘ ${T.no}</p><p class="mid">${rk(T.s/T.m)}</p>`:'')
+ +(d4&&!R.X&&t!='X'?bt('bs','افتح الملف السري','','am'):'')+bt('hb2','اختيار مجموعة أخرى')+bt('rp','إعادة المستوى')+bt('mn','القائمة الرئيسية'));
+ $('#rp').onclick=start;$('#hb2').onclick=hub;$('#mn').onclick=menu;if($('#bs'))$('#bs').onclick=()=>{S.team='X';brief()}}
+$('#hb').onclick=()=>{if(M=='play'&&!paused)nb()};
+
+/* ---------- الإدخال ---------- */
+addEventListener('keydown',e=>{if(M!='play'||paused)return;K[e.code]=1;if(e.code=='KeyE')act();if(e.code=='KeyN')nb();if(e.code=='Space'||e.code.startsWith('Arrow'))e.preventDefault()});
+addEventListener('keyup',e=>K[e.code]=0);
+document.querySelectorAll('#tc [data-k]').forEach(b=>{const k=b.dataset.k,on=e=>{e.preventDefault();K[k]=1},off=()=>K[k]=0;b.addEventListener('pointerdown',on);['pointerup','pointercancel','pointerleave'].forEach(v=>b.addEventListener(v,off))});
+$('#ta').addEventListener('pointerdown',e=>{e.preventDefault();if(M=='play'&&!paused)act()});
+const opn=o=>o.id==1||F.has(o.id-1);
+function near(){return QS.find(o=>Math.abs(P.x-o.x)<80&&opn(o))}
+function act(){const o=near();if(o&&P.g&&!P.ins){P.ins=1.1;P.cur=o;P.vx=0}}
+
+/* ---------- المنطق ---------- */
+function upd(dt){
+ if(P.ins>0){P.ins-=dt;P.vx=0;if(P.ins<=0){P.ins=0;clueP(P.cur)}}
+ else{const dir=(K.KeyD||K.ArrowRight?1:0)-(K.KeyA||K.ArrowLeft?1:0);P.vx+=(dir*200-P.vx)*Math.min(1,dt*10);if(dir)P.d=dir;
+  if(K.Space&&P.g){P.vy=-540;P.g=false;S.jumped=1}}
+ P.x=Math.max(30,Math.min(W-30,P.x+P.vx*dt));P.vy+=1500*dt;P.y+=P.vy*dt;if(P.y>=GY){P.y=GY;P.vy=0;P.g=true}
+ if(S.st==0&&Math.abs(P.x-120)>90)S.st=1;if(S.st==1&&S.jumped)S.st=2;if(S.st==2&&F.size)S.st=3;if(S.st==3&&(S.nb||F.size>1))S.st=4;
+ const m=TOUCH,tx=[m?'تحرك بأزرار الاتجاه':'تحرك بالمفتاحين A و D أو الأسهم',m?'اضغط زر القفز':'اضغط Space للقفز',m?'اقترب من جسم متوهج واضغط فحص':'اقترب من جسم متوهج واضغط E للفحص',m?'تم الحفظ. افتح دفتر الملاحظات من الزر أعلى الشاشة':'تم الحفظ. افتح دفتر الملاحظات بمفتاح N',F.size==3?'أنهيت المستوى':`ابحث عن الموقف التالي يمينًا: ${F.size}/3`];
+ $('#hint').textContent=P.ins>0?'جارٍ الفحص...':near()?(m?'اضغط فحص':'اضغط E للفحص'):tx[S.st]}
+
+/* ---------- الرسم ---------- */
+const rr=(a,b,w,h,r,f)=>{x.beginPath();x.roundRect(a,b,w,h,r);if(f){x.fillStyle=f;x.fill()}};
+const fr=(a,b,w,h,f)=>{x.fillStyle=f;x.fillRect(a,b,w,h)};
+const ci=(a,b,r,f)=>{x.beginPath();x.arc(a,b,r,0,7);x.fillStyle=f;x.fill()};
+function cup(cx,by,bl){x.fillStyle='#f3f6f4';x.beginPath();x.moveTo(cx-11,by-28);x.lineTo(cx+11,by-28);x.lineTo(cx+8,by);x.lineTo(cx-8,by);x.fill();fr(cx-10,by-18,20,7,'#1fa5a0');rr(cx-12-bl,by-34-bl*1.4,24+2*bl,7+bl*1.4,3,bl?'#e6cf72':'#cfd8dc')}
+function bg(){
+ fr(0,40,vw,GY-40,TH.w);const o=cam*.6;
+ for(let i=-1;i<vw/140+2;i++){const px=i*140-o%140;fr(px,40,3,GY-40,TH.l1);fr(px+60,60,2,GY-60,'#0c2236')}
+ for(let i=-1;i<vw/420+2;i++){const px=i*420-(o%420)+100;rr(px,95,90,80,6,'#07162c');rr(px+4,99,82,72,4,'#0c2748');ci(px+66,122,7,'#cfe3ee');ci(px+20,140,1.5,'#9fc');ci(px+40,155,1.5,'#9fc')}
+ const q=cam*.5;fr(0,56,vw,16,TH.p);fr(0,58,vw,3,TH.p2);fr(0,28,vw,12,'#163f50');
+ for(let i=-1;i<vw/180+2;i++){const px=i*180-q%180;fr(px,52,8,24,TH.p3);fr(px+90,24,8,20,TH.p3);fr(px+40,72,10,GY-72-140,'#143748')}}
+function lamp(lx,fl){x.fillStyle='#3a4b5a';x.fillRect(lx-1,0,2,52);x.fillStyle='#6a4a1a';x.beginPath();x.moveTo(lx-26,76);x.lineTo(lx+26,76);x.lineTo(lx+12,52);x.lineTo(lx-12,52);x.fill();ci(lx,78,8,'#ffe2a8');
+ x.globalCompositeOperation='lighter';const g=x.createRadialGradient(lx,80,4,lx,200,300);g.addColorStop(0,`rgba(255,200,120,${.22*fl})`);g.addColorStop(1,'rgba(255,200,120,0)');x.fillStyle=g;x.beginPath();x.moveTo(lx-20,78);x.lineTo(lx+20,78);x.lineTo(lx+170,GY);x.lineTo(lx-170,GY);x.fill();x.globalCompositeOperation='source-over'}
+function mark(o){if(!opn(o))return;const d=Math.abs(P.x-o.x),f=F.has(o.id),b=Math.sin(T*4)*3;
+ if(f){ci(o.x,o.my-22,9,'#1fa5a0');x.strokeStyle='#fff';x.lineWidth=2.5;x.beginPath();x.moveTo(o.x-4,o.my-22);x.lineTo(o.x-1,o.my-18);x.lineTo(o.x+5,o.my-27);x.stroke();return}
+ if(d<80){x.strokeStyle='#ffd58a';x.lineWidth=3;x.globalAlpha=.6+.4*Math.sin(T*8);x.beginPath();x.arc(o.x,o.my+30,48,0,7);x.stroke();x.globalAlpha=1;rr(o.x-13,o.my-40+b,26,26,7,'#f2a93b');x.fillStyle='#2a1604';x.font='700 17px Cairo,sans-serif';x.textAlign='center';x.fillText(TOUCH?'!':'E',o.x,o.my-21+b)}
+ else if(o.id!=5||d<260){x.globalAlpha=.55+.45*Math.sin(T*5+o.id);ci(o.x,o.my-24+b,o.id==5?6:5,'#ffd58a');ci(o.x,o.my-24+b,10,'rgba(255,213,138,.25)');x.globalAlpha=1}}
+let TH;const THM={A:{w:'#0e2a40',l1:'#123550',p:'#1b4d60',p2:'#2d7a8a',p3:'#276476'},
+B:{w:'#0f3a38',l1:'#16524c',p:'#1d6b62',p2:'#3aa596',p3:'#2a7d72',f1:'#1c4a45',f2:'#0a2422',e:'#3aa596'},
+C:{w:'#3a2a24',l1:'#4d382f',p:'#6b4a3a',p2:'#a8774f',p3:'#8a6244',f1:'#4a3a33',f2:'#1e1512',e:'#a8774f'},
+D:{w:'#2a2447',l1:'#3a3263',p:'#4b407f',p2:'#7a6bc0',p3:'#5f52a0',f1:'#3a3463',f2:'#14102a',e:'#7a6bc0'},
+X:{w:'#17405c',l1:'#245a7c',p:'#3a7ea3',p2:'#a9dcf2',p3:'#5aa0c4',f1:'#2a5f7e',f2:'#0c2336',e:'#a9dcf2'}};
+const dr=(cx,c)=>{rr(cx-24,GY-64,48,64,6,c);fr(cx-24,GY-46,48,6,'#f2a93b');fr(cx-24,GY-30,48,4,'#f2a93b')};
+const tb=(cx,w,h)=>{rr(cx-w/2,GY-h,w,10,3,'#aab8c2');fr(cx-w/2+6,GY-h+10,6,h-10,'#7d8e9a');fr(cx+w/2-12,GY-h+10,6,h-10,'#7d8e9a')};
+const crate=(cx,col)=>{rr(cx-34,GY-34,68,34,3,'#a8703a');for(let i=0;i<4;i++)ci(cx-24+i*16,GY-38,8,col)};
+const ENV={
+B:()=>{[160,880,1620,2380].forEach((c,i)=>dr(c,['#2b6fb0','#2fa6b0','#d9743a','#2b6fb0'][i]));tb(520,220,110);tb(1950,240,110);rr(1180,200,200,110,8,'#1d6b62');x.strokeStyle='#cfe6ee';x.lineWidth=5;x.beginPath();x.moveTo(1200,260);x.lineTo(1360,260);x.stroke();for(let i=0;i<4;i++){const k=(T*30+i*25)%80;x.globalAlpha=.5*(1-k/80);ci(1220+i*40,262+k,4,'#cfe6ee')}x.globalAlpha=1},
+C:()=>{rr(80,GY-210,80,210,8,'#9fb4c2');fr(82,GY-130,76,3,'#5a6b78');fr(146,GY-180,4,30,'#5a6b78');fr(146,GY-110,4,30,'#5a6b78');rr(1000,GY-100,200,100,4,'#6a7782');for(let i=0;i<3;i++){x.fillStyle='#10222f';x.beginPath();x.ellipse(1040+i*50,GY-100,18,5,0,0,7);x.fill()}rr(1085,GY-124,48,24,3,'#aab8c2');rr(1000,GY-250,200,40,6,'#59626b');tb(1620,240,100);tb(2300,200,110);for(let i=0;i<4;i++){ci(300+i*70,150,16,'#6a7782');fr(298+i*70,160,4,22,'#8a99a4')}},
+D:()=>{tb(240,200,100);tb(900,200,100);tb(1600,200,100);rr(1750,GY-90,520,16,4,'#3d5062');for(let i=1750;i<2270;i+=40)ci(i+20,GY-74,8,'#344454');rr(2290,GY-100,120,100,6,'#6a8ea3');[[160,'#d64545'],[240,'#4caf50'],[320,'#f2a93b']].forEach(a=>rr(a[0]-14,GY-124,28,24,3,a[1]));rr(560,110,300,46,8,'#3a3263');x.fillStyle='#ffd58a';x.font='700 24px Cairo,sans-serif';x.textAlign='center';x.fillText('LINE 3',710,142)},
+X:()=>{[[120,3],[880,2],[1560,3],[2200,2]].forEach(a=>{for(let r=0;r<a[1];r++)for(let c=0;c<3;c++)rr(a[0]-72+c*50,GY-44-r*44,48,42,3,(r+c)%2?'#e8f1f5':'#cfe3ee')});rr(2380,150,180,300,6,'#1a5a7a');for(let i=0;i<6;i++)fr(2392+i*28,150,16,300,'rgba(200,235,250,.3)');rr(700,200,120,60,6,'#07202a');x.fillStyle='#7fe3c0';x.font='900 30px Cairo,sans-serif';x.textAlign='center';x.fillText('4°C',760,243);for(let i=0;i<5;i++){const k=(T*12+i*70)%360;x.globalAlpha=.12;ci(100+i*520-k*.5,GY-20,60,'#e8f5ff')}x.globalAlpha=1}};
+function world(){if(!S.team||S.team=='A')return worldA();
+ const g=x.createLinearGradient(0,GY,0,H+260);g.addColorStop(0,TH.f1);g.addColorStop(1,TH.f2);fr(-20,GY,W+40,420,g);
+ for(let i=0;i<W;i+=120)fr(i,GY,2,420,'rgba(0,0,0,.25)');fr(0,GY,W,5,TH.e);
+ [220,760,1300,1840,2380].forEach(l=>lamp(l,1));ENV[S.team]();QS.forEach(sp);man()}
+function worldA(){
+ const g=x.createLinearGradient(0,GY,0,H+260);g.addColorStop(0,'#17324a');g.addColorStop(1,'#0a1a2c');fr(-20,GY,W+40,420,g);
+ for(let i=0;i<W;i+=120)fr(i,GY,2,420,'rgba(0,0,0,.25)');fr(0,GY,W,5,'#2a5670');
+ for(let i=0;i<W;i+=40){fr(i,GY+5,20,5,'#f2a93b');fr(i+20,GY+5,20,5,'#2a2f3a')}
+ [220,760,1300,1840,2380].forEach((l,i)=>lamp(l,i==2?(.75+.25*Math.sin(T*19)*Math.sin(T*3)):1));
+ /* رفوف التخزين */
+ fr(30,230,200,6,'#456');fr(30,330,200,6,'#456');fr(34,230,6,220,'#456');fr(224,230,6,220,'#456');
+ for(let i=0;i<3;i++){rr(46+i*60,282,52,48,3,'#a8703a');fr(46+i*60,300,52,4,'#7d5128')}rr(52,382,60,48,3,'#b9803f');rr(130,390,80,40,3,'#9a6230');rr(60,182,70,48,3,'#a8703a');
+ /* حزام النقل */
+ fr(300,410,1200,40,'#26323f');fr(300,404,1200,8,'#3d5062');fr(300,448,1200,2,'#0a121c');
+ for(let i=320;i<1500;i+=40){ci(i,430,9,'#344454');x.strokeStyle='#52687c';x.lineWidth=2;x.beginPath();x.moveTo(i-6,430);x.lineTo(i+6,430);x.stroke()}
+ for(let i=0;i<5;i++)fr(330+i*280,440,12,10,'#1a232d');
+ for(let c=336;c<1490;c+=64){if(Math.abs(c-900)<34)continue;cup(c,404,0)}
+ /* مربع تحكم بداية الخط */
+ rr(396,330,110,74,6,'#1b4f60');rr(404,338,94,34,4,'#08202a');for(let i=0;i<5;i++)fr(412+i*16,350-(i%3)*5,10,(i%3)*5+10,'#2fa6b0');
+ const bl=Math.sin(T*6)>0;ci(430,388,7,bl?'#d64545':'#5a2222');ci(460,388,7,'#c58a2a');ci(482,388,5,'#2a8a6a');
+ /* آلة التعبئة */
+ rr(1170,140,260,190,12,'#1d7f86');rr(1182,152,236,166,8,'#17666d');rr(1200,172,90,60,6,'#07202a');rr(1310,172,90,60,6,'#07202a');
+ x.strokeStyle='#5fd0c8';x.lineWidth=2;x.beginPath();x.moveTo(1208,214);x.lineTo(1232,196);x.lineTo(1252,206);x.lineTo(1280,182);x.stroke();
+ for(let i=0;i<9;i++)ci(1190+i*27,300,3,'#0f4a50');fr(1200,330,220,16,'#124f56');
+ [1220,1300,1380].forEach((nx,i)=>{fr(nx-8,346,16,40,'#8aa0ae');rr(nx-12,380,24,10,3,i==1?'#7a3a2a':'#2a323c')});
+ x.strokeStyle='#e8e4d4';x.lineWidth=2;x.beginPath();x.moveTo(1290,380);x.lineTo(1296,386);x.lineTo(1304,381);x.lineTo(1310,388);x.stroke();
+ ci(1300,396+(T*20%10),2.5,'#f4f2e6');
+ /* خزان وأنابيب */
+ rr(1560,190,150,260,30,'#2b8e96');rr(1560,190,150,60,30,'#37a5ad');fr(1585,250,6,200,'rgba(255,255,255,.15)');for(let i=0;i<4;i++)ci(1575,230+i*50,3,'#145a60');
+ fr(1430,230,140,12,'#276476');fr(1700,150,80,12,'#276476');fr(1660,150,12,40,'#276476');
+ for(let i=0;i<4;i++){const k=(T*28+i*32)%110;x.globalAlpha=.5*(1-k/110);ci(1665+Math.sin(k/9+i)*6,146-k,6+k/8,'#cfe6ee')}x.globalAlpha=1;
+ /* مكتب التحكم */
+ rr(1700,390,150,12,3,'#59421f');fr(1710,402,10,48,'#3a2a14');fr(1830,402,10,48,'#3a2a14');
+ rr(1720,300,100,78,6,'#10222f');rr(1728,308,84,58,3,'#07202a');x.strokeStyle='#e8956a';x.lineWidth=2;x.beginPath();x.moveTo(1734,350);x.lineTo(1750,330);x.lineTo(1766,342);x.lineTo(1782,318);x.lineTo(1804,326);x.stroke();fr(1762,378,16,12,'#10222f');
+ x.save();x.translate(1770,388);x.rotate(-.05);rr(-26,-4,52,6,2,'#d8dfe2');x.restore();rr(1750,350,34,40,3,'#e8e4d4');fr(1756,360,22,2,'#7a8a92');fr(1756,368,22,2,'#7a8a92');fr(1756,376,16,2,'#7a8a92');rr(1760,346,14,8,2,'#8a6a3a');
+ /* صناديق مخفية */
+ rr(2120,380,100,70,3,'#a8703a');rr(2290,370,100,80,3,'#b9803f');rr(2200,320,110,60,3,'#9a6230');rr(2140,310,70,70,3,'#a8703a');
+ for(const cx of [2120,2290,2200])fr(cx,cx==2200?345:405,cx==2200?110:100,4,'#7d5128');
+ x.save();x.translate(2250,430);x.rotate(.1);rr(-12,-12,26,18,2,'#e8e4d4');x.restore();
+ /* باب غرفة التبريد */
+ rr(2440,260,150,190,6,'#6a8ea3');rr(2452,272,126,178,4,'#9fc2d4');fr(2560,350,6,40,'#2a3a46');fr(2440,260,150,10,'#3a5a6e');
+  QS.forEach(sp);
+ man()}
+const PR={
+glass:px=>{x.fillStyle='rgba(170,230,245,.85)';[[-26,-14,-14,-6],[-8,2,-18,10],[12,22,-10,30]].forEach(a=>{x.beginPath();x.moveTo(px+a[0],GY);x.lineTo(px+a[1],GY+a[2]);x.lineTo(px+a[3],GY);x.fill()});ci(px+2,GY-22,2,'#fff')},
+fly:px=>{cup(px,404,0);ci(px+2,372,3,'#111');x.fillStyle='rgba(210,230,255,.85)';x.beginPath();x.ellipse(px-3,368,5,2.5,-.5,0,7);x.fill();x.beginPath();x.ellipse(px+7,368,5,2.5,.5,0,7);x.fill()},
+bolt:px=>{rr(px-8,GY-9,16,9,2,'#9aa7b2');fr(px-3,GY-14,6,6,'#7c8b97')},
+bottle:px=>{rr(px-9,GY-36,18,36,6,'#cfe8f2');rr(px-5,GY-46,10,12,3,'#f2a93b');fr(px-9,GY-24,18,14,'#fff')},
+spill:px=>{x.fillStyle='rgba(80,220,200,.45)';x.beginPath();x.ellipse(px,GY+8,48,9,0,0,7);x.fill();ci(px-14,GY+5,3,'rgba(255,255,255,.7)');rr(px+34,GY-10,30,14,5,'#cfe8f2')},
+log:px=>{rr(px-18,GY-80,36,48,3,'#e8e4d4');for(let i=0;i<3;i++)fr(px-12,GY-70+i*8,24,2,'#7a8a92');x.strokeStyle='#d64545';x.lineWidth=3;x.beginPath();x.moveTo(px-8,GY-48);x.lineTo(px+8,GY-38);x.moveTo(px+8,GY-48);x.lineTo(px-8,GY-38);x.stroke();fr(px-2,GY-32,4,32,'#456')},
+thermo:px=>{rr(px-24,GY-90,48,90,5,'#9fc2d4');rr(px-18,GY-82,36,22,3,'#08202a');x.fillStyle='#ff6b5a';x.font='700 15px Cairo,sans-serif';x.textAlign='center';x.fillText('12°',px,GY-66)},
+hands:px=>{rr(px-26,GY-52,52,12,4,'#aab8c2');fr(px-3,GY-40,6,40,'#8a99a4');fr(px-14,GY-72,6,22,'#aab8c2');fr(px-14,GY-72,16,5,'#aab8c2')},
+bloat:px=>{rr(px-22,GY-24,44,24,3,'#a8703a');cup(px,GY-24,5)},
+pallet:px=>{for(let i=0;i<3;i++)fr(px-34,GY-10-i*14,68,9,'#8a6a3a');[[-20,-34],[0,-24],[18,-12]].forEach(a=>ci(px+a[0],GY+a[1],4,'#6fa860'))},
+flake:px=>{ci(px-8,GY-4,6,'#2a2f3a');rr(px+4,GY-5,14,5,2,'#f4f2e6');rr(px-24,GY-3,10,3,1,'#f4f2e6')},
+phone:px=>{rr(px-22,GY-34,44,34,3,'#a8703a');rr(px-14,GY-40,12,6,2,'#10222f');x.strokeStyle='#f2c14e';x.lineWidth=3;x.beginPath();x.arc(px+12,GY-38,5,0,7);x.stroke()}};
+Object.assign(PR,{
+plastic:px=>{rr(px-26,GY-14,52,14,4,'#e6cf72');x.fillStyle='#4aa3df';x.beginPath();x.moveTo(px-8,GY-14);x.lineTo(px,GY-30);x.lineTo(px+12,GY-18);x.lineTo(px+6,GY-14);x.fill()},
+pest:px=>{crate(px,'#d64545');for(let i=0;i<5;i++)ci(px-30+i*15,GY-48-(i%2)*8+Math.sin(T*3+i)*2,3,'rgba(120,220,90,.7)')},
+spray:px=>{rr(px-34,GY-62,26,44,6,'#d9743a');fr(px-24,GY-70,6,10,'#5a3a22');x.strokeStyle='#5a3a22';x.lineWidth=3;x.beginPath();x.moveTo(px-18,GY-70);x.lineTo(px+10,GY-56);x.stroke();x.globalAlpha=.35;ci(px+30,GY-50,22+Math.sin(T*3)*3,'#7be07a');x.globalAlpha=1;crate(px+60,'#e6cf72')},
+detg:px=>{rr(px-30,GY-40,60,40,6,'#aab8c2');rr(px-24,GY-46,48,8,3,'#8a99a4');for(let i=0;i<6;i++)ci(px-22+i*9,GY-50-(i%2)*6,6,'rgba(255,255,255,.8)');rr(px+36,GY-26,22,26,4,'#2fa6b0')},
+bact:px=>{rr(px-30,GY-18,60,18,4,'#e6e0d0');rr(px-24,GY-30,48,14,7,'#c98f4a');ci(px,GY-72,26,'rgba(120,255,160,.18)');[[-10,-80],[8,-70],[-4,-62],[12,-84],[-14,-66]].forEach(a=>ci(px+a[0],GY+a[1],3,'#6fe39a'))},
+left:px=>{rr(px-32,GY-12,64,12,4,'#e6e0d0');rr(px-24,GY-26,48,16,8,'#c98f4a');ci(px,GY-80,20,'#f4f2e6');x.strokeStyle='#10222f';x.lineWidth=2.5;x.beginPath();x.moveTo(px,GY-80);x.lineTo(px,GY-93);x.moveTo(px,GY-80);x.lineTo(px+10,GY-76);x.stroke()},
+wings:px=>{rr(px-34,GY-10,68,10,4,'#59626b');[-18,0,18].forEach(a=>{x.fillStyle='#c97f3a';x.beginPath();x.ellipse(px+a,GY-18,12,7,.3,0,7);x.fill()});fr(px+36,GY-60,5,52,'#cfd8dc');ci(px+38,GY-8,6,'#d64545')},
+peanut:px=>{rr(px-20,GY-30,40,30,4,'#8a6a3a');rr(px-20,GY-30,40,7,3,'#f2a93b');[[-12,-38],[2,-40],[14,-36]].forEach(a=>{x.fillStyle='#d9b26a';x.beginPath();x.ellipse(px+a[0],GY+a[1],9,6,.4,0,7);x.fill()})},
+fruit:px=>{rr(px-50,GY-8,40,8,2,'#d8dfe2');rr(px+10,GY-8,40,8,2,'#d8dfe2');[-44,-32,-20].forEach(a=>{ci(px+a,GY-16,7,'#d64545');fr(px+a-3,GY-25,6,4,'#4caf50')});[16,26,36,46].forEach(a=>fr(px+a,GY-40,5,32,'#8fd16a'))},
+line:px=>{fr(px-60,GY-16,120,12,'#3d5062');for(let i=0;i<5;i++)ci(px-48+i*24,GY-10,5,'#52687c');rr(px-20,GY-44,40,28,4,'#f3f6f4');fr(px-20,GY-34,40,8,'#1fa5a0');for(let i=0;i<7;i++)ci(px-46+i*14,GY-19,2,'#d9b26a')},
+flyc:px=>{tb(px,90,60);cup(px,GY-60,0);const w=Math.sin(T*30)*2;ci(px+2,GY-86,3,'#111');x.fillStyle='rgba(210,230,255,.85)';x.beginPath();x.ellipse(px-3,GY-90-w,5,2.5,-.5,0,7);x.fill();x.beginPath();x.ellipse(px+7,GY-90+w,5,2.5,.5,0,7);x.fill()},
+micro:px=>{ci(px,GY-26,24,'#cfe3ee');ci(px,GY-26,19,'#0b2a35');[[-8,-6],[6,-10],[0,6],[-10,8],[10,4]].forEach(a=>ci(px+a[0],GY-26+a[1],3,'#6fe39a'));rr(px-30,GY-4,60,4,2,'#6a8ea3')},
+hold:px=>{rr(px-36,GY-30,72,30,3,'#a8703a');rr(px-36,GY-62,72,30,3,'#b9803f');for(let c=-24;c<=24;c+=24)cup(px+c,GY-62,0);rr(px-14,GY-52,28,16,2,'#d64545');fr(px-8,GY-46,16,2,'#fff')}});
+function sp(o){PR[o.p](o.x);mark(o)}
+function leg(hx,a){x.save();x.translate(hx,-30);x.rotate(a);rr(-4,0,9,22,4,'#1b2433');rr(-4,19,15,8,4,'#e8eef2');x.restore()}
+function man(){const p=P,mv=Math.abs(p.vx)>25&&p.g,ins=p.ins>0,sw=mv?Math.sin(p.t*12):0,bob=ins?0:mv?-Math.abs(Math.sin(p.t*12))*3:Math.sin(p.t*2.5)*1.2;
+ x.save();x.translate(p.x,p.y);x.scale(p.d,1);
+ x.fillStyle='rgba(0,0,0,.35)';x.beginPath();x.ellipse(0,1,18,4,0,0,7);x.fill();
+ x.translate(0,bob);
+ leg(-3,p.g?sw*.7:-.5);leg(3,p.g?-sw*.7:.6);
+ rr(-24,-64,15,32,6,'#d9743a');rr(-22,-58,11,12,4,'#b85a28');fr(-14,-62,3,22,'#7a3a18');
+ rr(-12,-66,26,38,9,'#1fa5a0');fr(-12,-36,26,8,'#17837f');fr(3,-64,2,34,'#0f6360');rr(-7,-70,18,8,4,'#17837f');
+ x.lineCap='round';x.lineWidth=7;x.strokeStyle='#17837f';
+ x.beginPath();x.moveTo(-2,-58);x.lineTo(-8-sw*5,-42);x.stroke();
+ x.strokeStyle='#1fa5a0';x.beginPath();x.moveTo(4,-58);
+ if(ins){x.lineTo(26,-54);x.stroke();ci(27,-54,4,'#f1c7a0');const mx=36,my=-54;x.strokeStyle='#8a5a22';x.lineWidth=4;x.beginPath();x.moveTo(27,-54);x.lineTo(mx-4,my);x.stroke();x.beginPath();x.arc(mx+6,my-3,11,0,7);x.fillStyle='rgba(150,235,240,.45)';x.fill();x.strokeStyle='#f2a93b';x.lineWidth=3;x.stroke()}
+ else if(!p.g){x.lineTo(18,-84);x.stroke();ci(19,-86,4,'#f1c7a0')}
+ else{x.lineTo(15,-47+sw*3);x.stroke();ci(16,-46+sw*3,4,'#f1c7a0');rr(16,-50+sw*3,14,8,3,'#c9ced2');rr(28,-51+sw*3,5,10,2,'#ffe2a8');
+  x.globalCompositeOperation='lighter';const g=x.createLinearGradient(34,0,230,0);g.addColorStop(0,'rgba(255,226,160,.4)');g.addColorStop(1,'rgba(255,226,160,0)');x.fillStyle=g;x.beginPath();x.moveTo(34,-47+sw*3);x.lineTo(230,-100);x.lineTo(230,10);x.fill();x.globalCompositeOperation='source-over'}
+ ci(2,-78,13,'#f1c7a0');x.beginPath();x.arc(2,-81,14,Math.PI,0);x.fillStyle='#f2a93b';x.fill();rr(-12,-83,28,5,2,'#d98a1f');
+ x.fillStyle='#2a1a10';x.beginPath();x.arc(-6,-82,6,Math.PI*.9,Math.PI*1.9);x.fill();
+ ci(9,-77,3.2,'#fff');ci(10,-77,1.7,'#1a2230');x.strokeStyle='#5a3a22';x.lineWidth=1.6;x.beginPath();x.moveTo(6,-83);x.lineTo(12,-82);x.stroke();
+ x.strokeStyle='#8a4a3a';x.beginPath();x.arc(8,-72,3.5,.2,2.6);x.stroke();
+ x.restore()}
+function draw(){
+ TH=THM[S.team]||THM.A;x.setTransform(sc,0,0,sc,0,0);
+ let g=x.createLinearGradient(0,0,0,vh);g.addColorStop(0,'#08142a');g.addColorStop(1,'#143a52');x.fillStyle=g;x.fillRect(0,0,vw,vh);
+ const tg=M=='play'?P.x-vw/2+P.d*70:380;cam+=(Math.max(0,Math.min(W-vw,tg))-cam)*.1;if(vw>W)cam=0;
+ const oy=(vh-H)*.7;x.save();x.translate(0,oy);bg();x.save();x.translate(-cam,0);world();x.restore();x.restore();
+ if(S.fl>0){x.fillStyle=`rgba(255,226,160,${S.fl*.28})`;x.fillRect(0,0,vw,vh)}const v=x.createRadialGradient(vw/2,vh/2,vh*.35,vw/2,vh/2,Math.max(vw,vh)*.7);v.addColorStop(0,'rgba(3,8,18,0)');v.addColorStop(1,'rgba(3,8,18,.6)');x.fillStyle=v;x.fillRect(0,0,vw,vh)}
+let last=0;
+function loop(ts){const dt=Math.min(.05,(ts-last)/1000||0);last=ts;T+=dt;P.t+=dt;S.fl=Math.max(0,(S.fl||0)-dt*2.5);if(M=='play'&&!paused)upd(dt);draw();requestAnimationFrame(loop)}
+menu();requestAnimationFrame(loop);
+</script></body></html>
